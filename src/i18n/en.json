@@ -1,0 +1,84 @@
+{
+  "app": {
+    "loading": "Getting weather data...",
+    "welcome_title": "Welcome to ClimaApp",
+    "welcome_subtitle": "Search a city or use your location to see the weather forecast",
+    "footer": "Data provided by Open-Meteo • React Native Web + TypeScript"
+  },
+  "search": {
+    "placeholder": "Search city..."
+  },
+  "location": {
+    "my_location": "My location",
+    "permission_title": "Location Permission",
+    "permission_message": "ClimaApp needs access to your location to show weather for your current area",
+    "ask_later": "Ask Later",
+    "cancel": "Cancel",
+    "allow": "Allow"
+  },
+  "errors": {
+    "location_default": "Could not get location",
+    "permission_denied": "Location permission denied. Please enable location permissions in your device settings.",
+    "position_unavailable": "Location unavailable. Make sure GPS is enabled.",
+    "timeout": "Request timed out. Please try again.",
+    "weather_fetch": "Error fetching weather data"
+  },
+  "forecast": {
+    "next_7_days": "📅 Next 7 days",
+    "next_24_hours": "🕐 Next 24 hours",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "now": "Now",
+    "days": {
+      "sun": "Sun",
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat"
+    }
+  },
+  "current": {
+    "feels_like": "Feels like",
+    "max": "Max",
+    "min": "Min",
+    "humidity": "Humidity",
+    "wind": "Wind",
+    "precipitation": "Precipitation",
+    "pressure": "Pressure",
+    "uv_index": "UV Index",
+    "visibility": "Visibility",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset"
+  },
+  "weather": {
+    "clear": "Clear sky",
+    "mostly_clear": "Mostly clear",
+    "partly_cloudy": "Partly cloudy",
+    "cloudy": "Cloudy",
+    "fog": "Fog",
+    "icy_fog": "Icy fog",
+    "light_drizzle": "Light drizzle",
+    "moderate_drizzle": "Moderate drizzle",
+    "heavy_drizzle": "Heavy drizzle",
+    "light_rain": "Light rain",
+    "moderate_rain": "Moderate rain",
+    "heavy_rain": "Heavy rain",
+    "light_freezing_rain": "Light freezing rain",
+    "heavy_freezing_rain": "Heavy freezing rain",
+    "light_snow": "Light snow",
+    "moderate_snow": "Moderate snow",
+    "heavy_snow": "Heavy snow",
+    "hail": "Hail",
+    "light_showers": "Light showers",
+    "moderate_showers": "Moderate showers",
+    "violent_showers": "Violent showers",
+    "light_snow_showers": "Light snow showers",
+    "heavy_snow_showers": "Heavy snow showers",
+    "thunderstorm": "Thunderstorm",
+    "thunderstorm_light_hail": "Thunderstorm with light hail",
+    "thunderstorm_heavy_hail": "Thunderstorm with heavy hail",
+    "unknown": "Unknown"
+  }
+}

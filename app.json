@@ -1,4 +1,8 @@
 {
   "name": "WeatherApp",
-  "displayName": "WeatherApp"
+  "displayName": "WeatherApp",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-3844196015891776~4044164394",
+    "ios_app_id": "ca-app-pub-3844196015891776~4044164394"
+  }
 }

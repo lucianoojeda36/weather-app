@@ -1,0 +1,84 @@
+{
+  "app": {
+    "loading": "Obteniendo datos del clima...",
+    "welcome_title": "Bienvenido a ClimaApp",
+    "welcome_subtitle": "Busca una ciudad o usa tu ubicación para ver el pronóstico del clima",
+    "footer": "Datos proporcionados por Open-Meteo • React Native Web + TypeScript"
+  },
+  "search": {
+    "placeholder": "Buscar ciudad..."
+  },
+  "location": {
+    "my_location": "Mi ubicación",
+    "permission_title": "Permiso de Ubicación",
+    "permission_message": "ClimaApp necesita acceso a tu ubicación para mostrar el clima de tu zona actual",
+    "ask_later": "Preguntar después",
+    "cancel": "Cancelar",
+    "allow": "Permitir"
+  },
+  "errors": {
+    "location_default": "No se pudo obtener la ubicación",
+    "permission_denied": "Permiso de ubicación denegado. Por favor, habilita los permisos de ubicación en la configuración de tu dispositivo.",
+    "position_unavailable": "Ubicación no disponible. Verifica que el GPS esté activado.",
+    "timeout": "Tiempo de espera agotado. Inténtalo de nuevo.",
+    "weather_fetch": "Error al obtener datos del clima"
+  },
+  "forecast": {
+    "next_7_days": "📅 Próximos 7 días",
+    "next_24_hours": "🕐 Próximas 24 horas",
+    "today": "Hoy",
+    "tomorrow": "Mañana",
+    "now": "Ahora",
+    "days": {
+      "sun": "Dom",
+      "mon": "Lun",
+      "tue": "Mar",
+      "wed": "Mié",
+      "thu": "Jue",
+      "fri": "Vie",
+      "sat": "Sáb"
+    }
+  },
+  "current": {
+    "feels_like": "Sensación térmica",
+    "max": "Máx",
+    "min": "Mín",
+    "humidity": "Humedad",
+    "wind": "Viento",
+    "precipitation": "Precipitación",
+    "pressure": "Presión",
+    "uv_index": "Índice UV",
+    "visibility": "Visibilidad",
+    "sunrise": "Amanecer",
+    "sunset": "Ocaso"
+  },
+  "weather": {
+    "clear": "Despejado",
+    "mostly_clear": "Mayormente despejado",
+    "partly_cloudy": "Parcialmente nublado",
+    "cloudy": "Nublado",
+    "fog": "Niebla",
+    "icy_fog": "Niebla helada",
+    "light_drizzle": "Llovizna ligera",
+    "moderate_drizzle": "Llovizna moderada",
+    "heavy_drizzle": "Llovizna intensa",
+    "light_rain": "Lluvia ligera",
+    "moderate_rain": "Lluvia moderada",
+    "heavy_rain": "Lluvia fuerte",
+    "light_freezing_rain": "Lluvia helada ligera",
+    "heavy_freezing_rain": "Lluvia helada fuerte",
+    "light_snow": "Nevada ligera",
+    "moderate_snow": "Nevada moderada",
+    "heavy_snow": "Nevada fuerte",
+    "hail": "Granizo",
+    "light_showers": "Chubascos ligeros",
+    "moderate_showers": "Chubascos moderados",
+    "violent_showers": "Chubascos violentos",
+    "light_snow_showers": "Nevadas ligeras",
+    "heavy_snow_showers": "Nevadas fuertes",
+    "thunderstorm": "Tormenta eléctrica",
+    "thunderstorm_light_hail": "Tormenta con granizo leve",
+    "thunderstorm_heavy_hail": "Tormenta con granizo fuerte",
+    "unknown": "Desconocido"
+  }
+}
