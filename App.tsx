@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import mobileAds from 'react-native-google-mobile-ads';
 import { useTranslation } from 'react-i18next';
 import './src/i18n';
@@ -11,7 +11,9 @@ import CurrentWeatherCard from './src/components/CurrentWeatherCard';
 import HourlyForecast from './src/components/HourlyForecast';
 import DailyForecast from './src/components/DailyForecast';
 import AdBanner from './src/components/AdBanner';
+import SplashScreen from './src/components/SplashScreen';
 import { ActivityIndicator, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 // Inicializar AdMob
 mobileAds().initialize();
@@ -30,6 +32,7 @@ const getBackground = (code: number, isDay: boolean): string => {
 
 const App: React.FC = () => {
   const { t } = useTranslation();
+  const [splashVisible, setSplashVisible] = useState(true);
   const {
     weather,
     loading,
@@ -64,6 +67,10 @@ const App: React.FC = () => {
   const bg = weather
     ? getBackground(weather.current.weatherCode, weather.current.isDay)
     : 'linear-gradient(180deg, #1976D2 0%, #42A5F5 50%, #BBDEFB 100%)';
+
+  if (splashVisible) {
+    return <SplashScreen onFinish={() => setSplashVisible(false)} />;
+  }
 
   return (
     <View style={[styles.root, { backgroundImage: bg } as any]}>
@@ -152,6 +159,7 @@ const styles = StyleSheet.create({
     flex: 1,
     minHeight: '100vh',
     transition: 'background 0.8s ease',
+    backgroundAttachment: 'fixed',
   } as any,
   scrollView: {
     flex: 1,
@@ -163,83 +171,83 @@ const styles = StyleSheet.create({
     maxWidth: 500,
     width: '100%',
     marginHorizontal: 'auto',
-    paddingHorizontal: 16,
-    paddingTop: 50,
-    paddingBottom: 30,
+    paddingHorizontal: wp(4.3),
+    paddingTop: hp(6.2),
+    paddingBottom: hp(3.7),
   } as any,
   header: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 24,
-    gap: 10,
+    marginBottom: hp(3),
+    gap: wp(2.7),
   },
   headerIcon: {
-    fontSize: 32,
+    fontSize: wp(8.5),
   },
   headerTitle: {
-    fontSize: 28,
+    fontSize: wp(7.5),
     fontWeight: '700',
     color: '#FFFFFF',
-    letterSpacing: 1,
+    letterSpacing: wp(0.3),
   },
   loadingContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 80,
-    gap: 16,
+    paddingVertical: hp(9.9),
+    gap: hp(2),
   },
   loadingText: {
     color: 'rgba(255,255,255,0.8)',
-    fontSize: 16,
+    fontSize: wp(4.3),
   },
   errorContainer: {
     backgroundColor: 'rgba(231,76,60,0.2)',
-    borderRadius: 16,
-    padding: 20,
+    borderRadius: wp(4.3),
+    padding: wp(5.3),
     alignItems: 'center',
     borderWidth: 1,
     borderColor: 'rgba(231,76,60,0.3)',
-    marginBottom: 16,
+    marginBottom: hp(2),
   },
   errorIcon: {
-    fontSize: 36,
-    marginBottom: 8,
+    fontSize: wp(9.6),
+    marginBottom: hp(1),
   },
   errorText: {
     color: '#FFFFFF',
-    fontSize: 15,
+    fontSize: wp(4),
     textAlign: 'center',
   },
   emptyContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 80,
+    paddingVertical: hp(9.9),
   },
   emptyIcon: {
-    fontSize: 72,
-    marginBottom: 16,
+    fontSize: wp(19.2),
+    marginBottom: hp(2),
   },
   emptyTitle: {
     color: '#FFFFFF',
-    fontSize: 24,
+    fontSize: wp(6.4),
     fontWeight: '700',
-    marginBottom: 8,
+    marginBottom: hp(1),
   },
   emptySubtitle: {
     color: 'rgba(255,255,255,0.7)',
-    fontSize: 16,
+    fontSize: wp(4.3),
     textAlign: 'center',
-    maxWidth: 300,
-    lineHeight: 24,
+    maxWidth: wp(80),
+    lineHeight: hp(3),
   },
   footer: {
-    paddingVertical: 20,
+    paddingVertical: hp(2.5),
     alignItems: 'center',
   },
   footerText: {
     color: 'rgba(255,255,255,0.4)',
-    fontSize: 12,
+    fontSize: wp(3.2),
     textAlign: 'center',
   },
 });

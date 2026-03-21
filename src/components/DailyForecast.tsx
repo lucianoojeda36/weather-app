@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { DailyData, getWeatherInfo } from '../types/weather';
 
 interface Props {
@@ -78,62 +79,62 @@ const DailyForecast: React.FC<Props> = ({ data }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'rgba(255,255,255,0.1)',
-    borderRadius: 24,
-    padding: 20,
-    marginBottom: 16,
+    borderRadius: wp(6.4),
+    padding: wp(5.3),
+    marginBottom: hp(2),
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.15)',
   },
   title: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: wp(4.3),
     fontWeight: '600',
-    marginBottom: 14,
+    marginBottom: hp(1.7),
     opacity: 0.9,
   },
   dayRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: hp(1.2),
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(255,255,255,0.06)',
   },
   dayNameContainer: {
-    width: 60,
+    width: wp(16),
   },
   dayName: {
     color: '#FFFFFF',
-    fontSize: 15,
+    fontSize: wp(4),
     fontWeight: '500',
   },
   dayIconContainer: {
-    width: 55,
+    width: wp(14.7),
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 3,
+    gap: wp(0.8),
   },
   dayIcon: {
-    fontSize: 22,
+    fontSize: wp(5.9),
   },
   precipProb: {
     color: '#74b9ff',
-    fontSize: 11,
+    fontSize: wp(2.9),
     fontWeight: '600',
   },
   tempMinText: {
     color: 'rgba(255,255,255,0.6)',
-    fontSize: 15,
+    fontSize: wp(4),
     fontWeight: '600',
-    width: 36,
+    width: wp(9.6),
     textAlign: 'right',
   },
   barContainer: {
     flex: 1,
-    paddingHorizontal: 10,
+    paddingHorizontal: wp(2.7),
   },
   barTrack: {
-    height: 6,
-    borderRadius: 3,
+    height: hp(0.75),
+    borderRadius: wp(0.8),
     backgroundColor: 'rgba(255,255,255,0.1)',
     position: 'relative',
     overflow: 'hidden',
@@ -142,13 +143,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     bottom: 0,
-    borderRadius: 3,
+    borderRadius: wp(0.8),
   },
   tempMaxText: {
     color: '#FFFFFF',
-    fontSize: 15,
+    fontSize: wp(4),
     fontWeight: '700',
-    width: 36,
+    width: wp(9.6),
     textAlign: 'right',
   },
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { HourlyData, getWeatherInfo } from '../types/weather';
 
 interface Props {
@@ -42,45 +43,43 @@ const HourlyForecast: React.FC<Props> = ({ data }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'rgba(255,255,255,0.1)',
-    borderRadius: 24,
-    padding: 20,
-    marginBottom: 16,
+    borderRadius: wp(6.4),
+    padding: wp(5.3),
+    marginBottom: hp(2),
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.15)',
-    // backdropFilter: 'blur(20px)',
-    // WebkitBackdropFilter: 'blur(20px)',
   },
   title: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: wp(4.3),
     fontWeight: '600',
-    marginBottom: 14,
+    marginBottom: hp(1.7),
     opacity: 0.9,
   },
   scrollContent: {
-    gap: 4,
+    gap: wp(1.1),
   },
   hourItem: {
     alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 14,
-    borderRadius: 20,
+    paddingVertical: hp(1.2),
+    paddingHorizontal: wp(3.7),
+    borderRadius: wp(5.3),
     backgroundColor: 'rgba(255,255,255,0.06)',
-    minWidth: 72,
+    minWidth: wp(19.2),
   },
   hourTime: {
     color: 'rgba(255,255,255,0.7)',
-    fontSize: 13,
-    marginBottom: 8,
+    fontSize: wp(3.5),
+    marginBottom: hp(1),
     fontWeight: '500',
   },
   hourIcon: {
-    fontSize: 28,
-    marginBottom: 8,
+    fontSize: wp(7.5),
+    marginBottom: hp(1),
   },
   hourTemp: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: wp(4.3),
     fontWeight: '700',
   },
 });

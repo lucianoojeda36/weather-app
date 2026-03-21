@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { WeatherData, getWeatherInfo } from '../types/weather';
 
 interface Props {
@@ -58,17 +59,15 @@ const CurrentWeatherCard: React.FC<Props> = ({ weather }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'rgba(255,255,255,0.1)',
-    borderRadius: 24,
-    padding: 24,
-    marginBottom: 16,
+    borderRadius: wp(6.4),
+    padding: wp(6.4),
+    marginBottom: hp(2),
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.15)',
-    // backdropFilter: 'blur(20px)',
-    // WebkitBackdropFilter: 'blur(20px)',
   },
   location: {
     color: '#FFFFFF',
-    fontSize: 18,
+    fontSize: wp(4.8),
     fontWeight: '600',
     textAlign: 'center',
     opacity: 0.9,
@@ -77,60 +76,60 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 8,
-    gap: 12,
+    marginVertical: hp(1),
+    gap: wp(3.2),
   },
   weatherIcon: {
-    fontSize: 64,
+    fontSize: wp(17),
   },
   temperature: {
-    fontSize: 80,
+    fontSize: wp(21.3),
     fontWeight: '200',
     color: '#FFFFFF',
-    letterSpacing: -4,
+    letterSpacing: -wp(1.1),
   },
   description: {
     color: '#FFFFFF',
-    fontSize: 20,
+    fontSize: wp(5.3),
     textAlign: 'center',
     fontWeight: '500',
-    marginBottom: 4,
+    marginBottom: hp(0.5),
   },
   feelsLike: {
     color: 'rgba(255,255,255,0.7)',
-    fontSize: 14,
+    fontSize: wp(3.7),
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: hp(2.5),
   },
   detailsGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 10,
+    gap: wp(2.7),
     justifyContent: 'center',
   },
   detailItem: {
     backgroundColor: 'rgba(255,255,255,0.08)',
-    borderRadius: 16,
-    padding: 14,
+    borderRadius: wp(4.3),
+    padding: wp(3.7),
     alignItems: 'center',
-    width: '22%',
-    minWidth: 80,
+    width: wp(25),
+    minWidth: wp(21.3),
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.06)',
   },
   detailIcon: {
-    fontSize: 22,
-    marginBottom: 6,
+    fontSize: wp(5.9),
+    marginBottom: hp(0.75),
   },
   detailValue: {
     color: '#FFFFFF',
-    fontSize: 15,
+    fontSize: wp(4),
     fontWeight: '700',
   },
   detailLabel: {
     color: 'rgba(255,255,255,0.6)',
-    fontSize: 11,
-    marginTop: 2,
+    fontSize: wp(2.9),
+    marginTop: hp(0.25),
   },
 });
 
