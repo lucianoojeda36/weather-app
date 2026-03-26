@@ -3,7 +3,7 @@
     "loading": "Getting weather data...",
     "welcome_title": "Welcome to ClimaApp",
     "welcome_subtitle": "Search a city or use your location to see the weather forecast",
-    "footer": "Data provided by Open-Meteo • React Native Web + TypeScript"
+    "footer": "Data provided by Open-Meteo · v{{version}}"
   },
   "search": {
     "placeholder": "Search city..."

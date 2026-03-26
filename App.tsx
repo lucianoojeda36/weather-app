@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import mobileAds from 'react-native-google-mobile-ads';
 import { useTranslation } from 'react-i18next';
 import './src/i18n';
+import { appVersion } from './src/config';
 
 import { useWeather } from './src/hooks/useWeather';
 import { useLocationPermission } from './src/hooks/useLocationPermission';
@@ -12,6 +13,7 @@ import HourlyForecast from './src/components/HourlyForecast';
 import DailyForecast from './src/components/DailyForecast';
 import AdBanner from './src/components/AdBanner';
 import SplashScreen from './src/components/SplashScreen';
+import { useInterstitialAd } from './src/hooks/useInterstitialAd';
 import { ActivityIndicator, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
@@ -45,6 +47,7 @@ const App: React.FC = () => {
   } = useWeather();
 
   const { requestLocationPermission } = useLocationPermission();
+  useInterstitialAd();
 
   useEffect(() => {
     const initializeLocation = async () => {
@@ -69,7 +72,9 @@ const App: React.FC = () => {
     : 'linear-gradient(180deg, #1976D2 0%, #42A5F5 50%, #BBDEFB 100%)';
 
   if (splashVisible) {
-    return <SplashScreen onFinish={() => setSplashVisible(false)} />;
+    return (
+      <SplashScreen onFinish={() => setSplashVisible(false)} />
+    );
   }
 
   return (
@@ -84,6 +89,7 @@ const App: React.FC = () => {
             onRefresh={handleGeolocation}
             tintColor="#FFFFFF"
             colors={['#FFFFFF']}
+            progressBackgroundColor="rgba(15, 12, 41, 0.85)"
           />
         }
       >
@@ -146,7 +152,7 @@ const App: React.FC = () => {
 
           {/* Footer */}
           <View style={styles.footer}>
-            <Text style={styles.footerText}>{t('app.footer')}</Text>
+            <Text style={styles.footerText}>{t('app.footer', { version: appVersion })}</Text>
           </View>
         </View>
       </ScrollView>

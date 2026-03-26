@@ -1,15 +1,13 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
-
-// ID de banner de prueba oficial de Google
-const AD_UNIT_ID = TestIds.BANNER;
+import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
+import { adConfig } from '../config';
 
 const AdBanner: React.FC = () => {
   return (
     <View style={styles.container}>
       <BannerAd
-        unitId={AD_UNIT_ID}
+        unitId={adConfig.bannerUnitId}
         size={BannerAdSize.BANNER}
         requestOptions={{
           requestNonPersonalizedAdsOnly: true,
