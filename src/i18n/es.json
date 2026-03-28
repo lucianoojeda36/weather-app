@@ -1,5 +1,7 @@
 {
   "app": {
+    "title": "ClimaApp",
+    "tagline": "Tu cielo, siempre contigo",
     "loading": "Obteniendo datos del clima...",
     "welcome_title": "Bienvenido a ClimaApp",
     "welcome_subtitle": "Busca una ciudad o usa tu ubicación para ver el pronóstico del clima",

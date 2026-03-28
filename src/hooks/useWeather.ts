@@ -104,31 +104,61 @@ export const useWeather = () => {
 
   const fetchByGeolocation = useCallback(() => {
     setLoading(true);
-    Geolocation.getCurrentPosition(
-      (position) => {
-        fetchWeather(position.coords.latitude, position.coords.longitude, t('location.my_location'));
-      },
-      (error) => {
-        let errorMessage = t('errors.location_default');
-        switch (error.code) {
-          case error.PERMISSION_DENIED:
-            errorMessage = t('errors.permission_denied');
-            break;
-          case error.POSITION_UNAVAILABLE:
-            errorMessage = t('errors.position_unavailable');
-            break;
-          case error.TIMEOUT:
-            errorMessage = t('errors.timeout');
-            break;
-        }
-        setError(errorMessage);
-        setLoading(false);
-      },
-      { 
-        enableHighAccuracy: true, 
-        timeout: 15000, 
-        maximumAge: 10000
+    let successCalled = false;
+
+    const onSuccess = (position: GeolocationPosition) => {
+      successCalled = true;
+      fetchWeather(position.coords.latitude, position.coords.longitude, t('location.my_location'));
+    };
+
+    const onError = (err: GeolocationError) => {
+      if (successCalled) return;
+
+      if (err.code === err.TIMEOUT || err.code === err.POSITION_UNAVAILABLE) {
+        Geolocation.getCurrentPosition(
+          onSuccess,
+          (fallbackErr) => {
+            if (successCalled) return;
+            let errorMessage = t('errors.location_default');
+            switch (fallbackErr.code) {
+              case fallbackErr.PERMISSION_DENIED:
+                errorMessage = t('errors.permission_denied');
+                break;
+              case fallbackErr.POSITION_UNAVAILABLE:
+                errorMessage = t('errors.position_unavailable');
+                break;
+              case fallbackErr.TIMEOUT:
+                errorMessage = t('errors.timeout');
+                break;
+            }
+            setError(errorMessage);
+            setLoading(false);
+          },
+          { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 }
+        );
+        return;
       }
+
+      let errorMessage = t('errors.location_default');
+      switch (err.code) {
+        case err.PERMISSION_DENIED:
+          errorMessage = t('errors.permission_denied');
+          break;
+        case err.POSITION_UNAVAILABLE:
+          errorMessage = t('errors.position_unavailable');
+          break;
+        case err.TIMEOUT:
+          errorMessage = t('errors.timeout');
+          break;
+      }
+      setError(errorMessage);
+      setLoading(false);
+    };
+
+    Geolocation.getCurrentPosition(
+      onSuccess,
+      onError,
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 10000 }
     );
   }, [fetchWeather]);
 

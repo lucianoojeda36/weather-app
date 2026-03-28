@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import mobileAds from 'react-native-google-mobile-ads';
 import { useTranslation } from 'react-i18next';
 import './src/i18n';
@@ -35,6 +35,8 @@ const getBackground = (code: number, isDay: boolean): string => {
 const App: React.FC = () => {
   const { t } = useTranslation();
   const [splashVisible, setSplashVisible] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const wasLoading = useRef(false);
   const {
     weather,
     loading,
@@ -67,6 +69,20 @@ const App: React.FC = () => {
     }
   };
 
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    await handleGeolocation();
+  };
+
+  useEffect(() => {
+    if (loading) {
+      wasLoading.current = true;
+    } else if (wasLoading.current && refreshing) {
+      wasLoading.current = false;
+      setRefreshing(false);
+    }
+  }, [loading, refreshing]);
+
   const bg = weather
     ? getBackground(weather.current.weatherCode, weather.current.isDay)
     : 'linear-gradient(180deg, #1976D2 0%, #42A5F5 50%, #BBDEFB 100%)';
@@ -85,8 +101,8 @@ const App: React.FC = () => {
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl
-            refreshing={loading}
-            onRefresh={handleGeolocation}
+            refreshing={refreshing}
+            onRefresh={handleRefresh}
             tintColor="#FFFFFF"
             colors={['#FFFFFF']}
             progressBackgroundColor="rgba(15, 12, 41, 0.85)"
@@ -101,7 +117,7 @@ const App: React.FC = () => {
                 ? getWeatherInfo(weather.current.weatherCode, weather.current.isDay).icon
                 : '🌤️'}
             </Text>
-            <Text style={styles.headerTitle}>ClimaApp</Text>
+            <Text style={styles.headerTitle}>{t('app.title')}</Text>
           </View>
 
           {/* Search Bar */}
@@ -122,7 +138,7 @@ const App: React.FC = () => {
           )}
 
           {/* Error */}
-          {error && (
+          {error && !loading && (
             <View style={styles.errorContainer}>
               <Text style={styles.errorIcon}>⚠️</Text>
               <Text style={styles.errorText}>{error}</Text>

@@ -1,7 +1,9 @@
 {
   "app": {
+    "title": "WeatherApp",
+    "tagline": "Your sky, always with you",
     "loading": "Getting weather data...",
-    "welcome_title": "Welcome to ClimaApp",
+    "welcome_title": "Welcome to WeatherApp",
     "welcome_subtitle": "Search a city or use your location to see the weather forecast",
     "footer": "Data provided by Open-Meteo · v{{version}}"
   },
@@ -11,7 +13,7 @@
   "location": {
     "my_location": "My location",
     "permission_title": "Location Permission",
-    "permission_message": "ClimaApp needs access to your location to show weather for your current area",
+    "permission_message": "WeatherApp needs access to your location to show weather for your current area",
     "ask_later": "Ask Later",
     "cancel": "Cancel",
     "allow": "Allow"

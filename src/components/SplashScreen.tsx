@@ -1,12 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { useTranslation } from 'react-i18next';
 
 interface SplashScreenProps {
   onFinish: () => void;
 }
 
 const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
+  const { t } = useTranslation();
   const opacity = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(0.7)).current;
   const taglineOpacity = useRef(new Animated.Value(0)).current;
@@ -65,11 +67,11 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
         </Animated.Text>
 
         <Animated.Text style={[styles.title, { opacity, transform: [{ scale }] }]}>
-          ClimaApp
+          {t('app.title')}
         </Animated.Text>
 
         <Animated.Text style={[styles.tagline, { opacity: taglineOpacity }]}>
-          Tu cielo, siempre contigo
+          {t('app.tagline')}
         </Animated.Text>
 
         <Animated.View style={[styles.dotsRow, { opacity: dotsOpacity }]}>
