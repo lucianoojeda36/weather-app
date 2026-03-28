@@ -1,4 +1,4 @@
-package com.weatherapp
+package com.loj.weatherapp
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
