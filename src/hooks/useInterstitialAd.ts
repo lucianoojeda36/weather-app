@@ -13,7 +13,7 @@ export function useInterstitialAd() {
   const skipNextActive = useRef(false);
 
   useEffect(() => {
-    focusCount.current = 1; // cold start cuenta como primer foco
+    focusCount.current = 0;
 
     const unsubscribeLoaded = interstitial.addAdEventListener(AdEventType.LOADED, () => {
       adLoaded.current = true;
