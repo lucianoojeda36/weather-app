@@ -16,7 +16,10 @@
     "permission_message": "ClimaApp necesita acceso a tu ubicación para mostrar el clima de tu zona actual",
     "ask_later": "Preguntar después",
     "cancel": "Cancelar",
-    "allow": "Permitir"
+    "allow": "Permitir",
+    "modal_title": "Activar Ubicación",
+    "modal_description": "Permite que ClimaApp acceda a tu ubicación para mostrarte el clima local con precisión",
+    "not_now": "Ahora no"
   },
   "errors": {
     "location_default": "No se pudo obtener la ubicación",

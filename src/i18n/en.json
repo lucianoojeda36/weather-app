@@ -16,7 +16,10 @@
     "permission_message": "WeatherApp needs access to your location to show weather for your current area",
     "ask_later": "Ask Later",
     "cancel": "Cancel",
-    "allow": "Allow"
+    "allow": "Allow",
+    "modal_title": "Enable Location",
+    "modal_description": "Allow WeatherApp to access your location to show accurate local weather",
+    "not_now": "Not now"
   },
   "errors": {
     "location_default": "Could not get location",

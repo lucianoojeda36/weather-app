@@ -17,6 +17,7 @@
     "react": "19.2.3",
     "react-i18next": "^16.5.8",
     "react-native": "0.84.1",
+    "react-native-android-location-enabler": "^3.0.1",
     "react-native-config": "^1.6.1",
     "react-native-google-mobile-ads": "^16.2.3",
     "react-native-responsive-screen": "^1.4.2",

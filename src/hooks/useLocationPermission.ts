@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { Platform, PermissionsAndroid } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { promptForEnableLocationIfNeeded } from 'react-native-android-location-enabler';
 
 export const useLocationPermission = () => {
   const { t } = useTranslation();
@@ -67,9 +68,20 @@ export const useLocationPermission = () => {
     return true;
   }, []);
 
+  const enableGPS = useCallback(async (): Promise<boolean> => {
+    if (Platform.OS !== 'android') return true;
+    try {
+      const result = await promptForEnableLocationIfNeeded();
+      return result === 'already-enabled' || result === 'enabled';
+    } catch {
+      return false;
+    }
+  }, []);
+
   return {
     permissionStatus,
     requestLocationPermission,
     checkPermission,
+    enableGPS,
   };
 };

@@ -48,30 +48,34 @@ const App: React.FC = () => {
     setSuggestions,
   } = useWeather();
 
-  const { requestLocationPermission } = useLocationPermission();
+  const { requestLocationPermission, checkPermission, enableGPS } = useLocationPermission();
   useInterstitialAd();
 
-  useEffect(() => {
-    const initializeLocation = async () => {
-      const hasPermission = await requestLocationPermission();
-      if (hasPermission) {
-        fetchByGeolocation();
-      }
-    };
-
-    initializeLocation();
-  }, [fetchByGeolocation, requestLocationPermission]);
-
-  const handleGeolocation = async () => {
-    const hasPermission = await requestLocationPermission();
-    if (hasPermission) {
+  const requestAndFetch = async () => {
+    const alreadyGranted = await checkPermission();
+    if (!alreadyGranted) {
+      const granted = await requestLocationPermission();
+      if (!granted) return;
+    }
+    const gpsOn = await enableGPS();
+    if (gpsOn) {
       fetchByGeolocation();
     }
   };
 
+  useEffect(() => {
+    requestAndFetch();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleGeolocation = () => requestAndFetch();
+
   const handleRefresh = async () => {
     setRefreshing(true);
-    await handleGeolocation();
+    await requestAndFetch();
+    if (!wasLoading.current) {
+      setRefreshing(false);
+    }
   };
 
   useEffect(() => {
