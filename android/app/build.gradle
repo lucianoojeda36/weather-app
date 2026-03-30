@@ -89,8 +89,8 @@ android {
         applicationId "com.loj.weatherapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode Integer.parseInt(project.env.get("APP_VERSION_CODE") ?: "1")
+        versionName project.env.get("APP_VERSION") ?: "1.0.0"
     }
     signingConfigs {
         debug {
