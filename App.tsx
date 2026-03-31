@@ -14,6 +14,7 @@ import DailyForecast from './src/components/DailyForecast';
 import AdBanner from './src/components/AdBanner';
 import SplashScreen from './src/components/SplashScreen';
 import { useInterstitialAd } from './src/hooks/useInterstitialAd';
+import { useInAppUpdate } from './src/hooks/useInAppUpdate';
 import { ActivityIndicator, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
@@ -50,6 +51,7 @@ const App: React.FC = () => {
 
   const { requestLocationPermission, checkPermission, enableGPS } = useLocationPermission();
   useInterstitialAd();
+  useInAppUpdate();
 
   const requestAndFetch = async () => {
     const alreadyGranted = await checkPermission();

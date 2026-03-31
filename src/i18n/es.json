@@ -85,5 +85,11 @@
     "thunderstorm_light_hail": "Tormenta con granizo leve",
     "thunderstorm_heavy_hail": "Tormenta con granizo fuerte",
     "unknown": "Desconocido"
+  },
+  "update": {
+    "title": "Actualización Disponible",
+    "message": "Hay una nueva versión disponible. Actualiza ahora para obtener las últimas mejoras.",
+    "button_update": "Actualizar",
+    "button_later": "Después"
   }
 }

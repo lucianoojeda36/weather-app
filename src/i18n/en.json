@@ -85,5 +85,11 @@
     "thunderstorm_light_hail": "Thunderstorm with light hail",
     "thunderstorm_heavy_hail": "Thunderstorm with heavy hail",
     "unknown": "Unknown"
+  },
+  "update": {
+    "title": "Update Available",
+    "message": "A new version of WeatherApp is available. Update now for the latest features.",
+    "button_update": "Update",
+    "button_later": "Later"
   }
 }
