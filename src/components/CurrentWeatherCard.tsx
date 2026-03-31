@@ -15,8 +15,8 @@ const DetailItem: React.FC<{ icon: string; label: string; value: string }> = ({
 }) => (
   <View style={styles.detailItem}>
     <Text style={styles.detailIcon}>{icon}</Text>
-    <Text style={styles.detailValue}>{value}</Text>
-    <Text style={styles.detailLabel}>{label}</Text>
+    <Text style={styles.detailValue} numberOfLines={1} adjustsFontSizeToFit>{value}</Text>
+    <Text style={styles.detailLabel} numberOfLines={1} adjustsFontSizeToFit>{label}</Text>
   </View>
 );
 
@@ -112,8 +112,8 @@ const styles = StyleSheet.create({
     borderRadius: wp(4.3),
     padding: wp(3.7),
     alignItems: 'center',
-    width: wp(25),
-    minWidth: wp(21.3),
+    flexGrow: 1,
+    flexBasis: wp(22),
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.06)',
   },
