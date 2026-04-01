@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Alert, Linking, Platform } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import SpInAppUpdates, {
-  AndroidUpdateType,
+  IAUUpdateKind,
 } from 'sp-react-native-in-app-updates';
 import { appVersion } from '../config';
 
@@ -32,10 +32,10 @@ export const useInAppUpdate = () => {
 
   const checkAndroid = async () => {
     try {
-      const inAppUpdates = new SpInAppUpdates(__DEV__);
-      const result = await inAppUpdates.checkNeedsUpdate({ curVersion: appVersion });
+      const inAppUpdates = new SpInAppUpdates(false);
+      const result = await inAppUpdates.checkNeedsUpdate();
       if (result.shouldUpdate) {
-        inAppUpdates.startUpdate({ updateType: AndroidUpdateType.FLEXIBLE });
+        inAppUpdates.startUpdate({ updateType: IAUUpdateKind.IMMEDIATE });
       }
     } catch (e) {
       if (__DEV__) { console.warn('[useInAppUpdate] Android:', e); }
