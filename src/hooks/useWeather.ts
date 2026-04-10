@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   WeatherData,
@@ -6,7 +6,11 @@ import {
   HourlyData,
   DailyData,
 } from '../types/weather';
-import Geolocation from '@react-native-community/geolocation';
+import Geolocation, { GeolocationResponse, GeolocationError } from '@react-native-community/geolocation';
+import type GeolocationReturnType from '@react-native-community/geolocation';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const LAST_LOCATION_KEY = 'last_location';
 
 export const useWeather = () => {
   const { t } = useTranslation();
@@ -88,11 +92,23 @@ export const useWeather = () => {
 
       setWeather(weatherData);
       setSuggestions([]);
+      AsyncStorage.setItem(LAST_LOCATION_KEY, JSON.stringify({ lat, lon, locationName }));
     } catch {
       setError(t('errors.weather_fetch'));
     } finally {
       setLoading(false);
     }
+  }, []);
+
+  useEffect(() => {
+    AsyncStorage.getItem(LAST_LOCATION_KEY).then(stored => {
+      if (stored) {
+        const { lat, lon, locationName } = JSON.parse(stored);
+        fetchWeather(lat, lon, locationName);
+      }
+    });
+  // fetchWeather is stable (useCallback with [] deps), safe to omit
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchByCity = useCallback((city: GeoLocation) => {
@@ -106,7 +122,7 @@ export const useWeather = () => {
     setLoading(true);
     let successCalled = false;
 
-    const onSuccess = (position: GeolocationPosition) => {
+    const onSuccess = (position: GeolocationResponse) => {
       successCalled = true;
       fetchWeather(position.coords.latitude, position.coords.longitude, t('location.my_location'));
     };
