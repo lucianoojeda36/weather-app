@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+import { Platform, NativeModules } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import {
   WeatherData,
@@ -11,6 +12,7 @@ import type GeolocationReturnType from '@react-native-community/geolocation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LAST_LOCATION_KEY = 'last_location';
+const WIDGET_DATA_KEY = 'widget_weather_data';
 
 export const useWeather = () => {
   const { t } = useTranslation();
@@ -93,6 +95,25 @@ export const useWeather = () => {
       setWeather(weatherData);
       setSuggestions([]);
       AsyncStorage.setItem(LAST_LOCATION_KEY, JSON.stringify({ lat, lon, locationName }));
+
+      // Save widget data for Android widget task handler
+      const widgetData = {
+        temperature: weatherData.current.temperature,
+        feelsLike: weatherData.current.feelsLike,
+        humidity: weatherData.current.humidity,
+        weatherCode: weatherData.current.weatherCode,
+        city: locationName,
+      };
+      AsyncStorage.setItem(WIDGET_DATA_KEY, JSON.stringify(widgetData));
+
+      // Notify iOS widget to reload
+      if (Platform.OS === 'ios' && NativeModules.WeatherWidgetBridge) {
+        NativeModules.WeatherWidgetBridge.setWidgetData(
+          weatherData.current.temperature,
+          weatherData.current.weatherCode,
+          locationName
+        );
+      }
     } catch {
       setError(t('errors.weather_fetch'));
     } finally {
